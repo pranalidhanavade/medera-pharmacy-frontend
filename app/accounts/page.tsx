@@ -16,7 +16,7 @@ export default function Accounts() {
     { id: 2, date: "2024-12-05", description: "Withdrawal", amount: -2000 },
     { id: 3, date: "2024-12-10", description: "Deposit", amount: 3000 },
   ]);
-  const [currentBalance, setCurrentBalance] = useState<Number>();
+  const [currentBalance, setCurrentBalance] = useState<number | undefined>();
 
   const accountId = process.env.NEXT_PUBLIC_ACCOUNT_ID;
   const privateKey =
@@ -72,7 +72,9 @@ useEffect(() => {
           <div className="bg-teal-100 p-4 rounded-lg text-center shadow-md">
             <h2 className="text-xl font-semibold">Account Info</h2>
             <div className="mt-4">
-  <p className="text-lg">Balance: {currentBalance?.toString() || 'Loading...'}</p>
+  <p className="text-lg">                
+    Balance: {currentBalance !== undefined ? currentBalance : "Loading..."}
+  </p>
 </div>
 
 
