@@ -26,7 +26,7 @@ export default function PharmaLoginPage() {
       <div className="w-full max-w-md bg-white rounded-2xl shadow-2xl p-8 m-36">
         <div className="text-center mb-6">
           <h2 className="text-4xl font-bold text-teal-700">Pharmacist Login</h2>
-          <p className="mt-2 text-gray-600 text-sm">Secure your access to the pharmacy management tools</p>
+          <p className="mt-2 text-gray-600 text-sm">Sign in to access age and manage your dashboard.</p>
         </div>
 
         <form onSubmit={handleLogin} className="space-y-6">
@@ -57,7 +57,7 @@ export default function PharmaLoginPage() {
             />
           </div>
 
-          <div className="flex items-center justify-between">
+          {/* <div className="flex items-center justify-between">
             <div className="flex items-center">
               <input
                 id="remember-me"
@@ -68,7 +68,7 @@ export default function PharmaLoginPage() {
               <label htmlFor="remember-me" className="ml-2 text-sm text-gray-600">Remember me</label>
             </div>
             <a href="#" className="text-sm text-teal-600 hover:text-teal-700">Forgot your password?</a>
-          </div>
+          </div> */}
 
           <button
             type="submit"
@@ -78,11 +78,11 @@ export default function PharmaLoginPage() {
           </button>
         </form>
 
-        <div className="text-center mt-6">
+        {/* <div className="text-center mt-6">
           <p className="text-sm text-gray-600">Don't have an account?{' '}
             <a href="#" className="text-teal-600 hover:text-teal-700">Sign up</a>
           </p>
-        </div>
+        </div> */}
       </div>
     </div>
     </div>

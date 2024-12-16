@@ -18,11 +18,14 @@ export default function Accounts() {
   ]);
   const [currentBalance, setCurrentBalance] = useState<Number>();
 
-  const accountId = "0.0.5170805";
+  const accountId = process.env.NEXT_PUBLIC_ACCOUNT_ID;
   const privateKey =
-  "3030020100300706052b8104000a0422042014431bad48c9e34fce243ec5c7e23d2f70aeb3387af17b361d530279e97ed624";
-  const contractId = "0.0.5256922";
+  process.env.NEXT_PUBLIC_PRIVATE_KEY;
+  const contractId = process.env.NEXT_PUBLIC_CONTRACT_ID
 
+  if (!accountId || !privateKey) {
+    throw new Error("Account ID or Private Key is missing from environment variables");
+  }
 
 const client = Client.forTestnet();
 client.setOperator(AccountId.fromString(accountId), PrivateKey.fromString(privateKey));
@@ -50,7 +53,7 @@ useEffect(() => {
   }, []);
 
   const handleLogout = () => {
-    router.push("/login");
+    router.push("/dashboard");
   };
 
   return (
@@ -69,8 +72,10 @@ useEffect(() => {
           <div className="bg-teal-100 p-4 rounded-lg text-center shadow-md">
             <h2 className="text-xl font-semibold">Account Info</h2>
             <div className="mt-4">
-              <p className="text-lg">Balance:{currentBalance}</p>
-            </div>
+  <p className="text-lg">Balance: {currentBalance?.toString() || 'Loading...'}</p>
+</div>
+
+
           </div>
           <div className="mt-4"><button
             className="bg-teal-100 py-2 px-6 rounded-lg hover:bg-teal-500"
