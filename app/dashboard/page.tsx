@@ -176,7 +176,6 @@ export default function PharmacistDashboard() {
       setIsLoading(false);
     }, 2000);
   };
-console.log("selectedPrescriptionselectedPrescription", selectedPrescription);
 
   useEffect(() => {
     fetchQrCode();

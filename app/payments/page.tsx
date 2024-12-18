@@ -11,10 +11,16 @@ export default function Payments() {
   const [initialBalance, setInitialBalance] = useState<number | undefined>();
   const [paymentSuccessful, setPaymentSuccessful] = useState(false);
   const [receiptQrUrl, setReceiptQrUrl] = useState<string | null>(null); // State to hold receipt URL for QR code
+  const [storedPrescription, setStoredPrescription] = useState<string | null>(null);
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const stored = localStorage.getItem("selectedPrescription");
+      setStoredPrescription(stored);
+    }
+  }, []);
 
-  const storedPrescription = localStorage.getItem("selectedPrescription");
-console.log("storedPrescription-------------------",storedPrescription)
+  // const storedPrescription = localStorage.getItem("selectedPrescription");
 
 useEffect(() => {
   if (paymentSuccessful && storedPrescription) {
@@ -28,7 +34,6 @@ useEffect(() => {
           body: JSON.stringify({ receipt: storedPrescription }),
         });
         const responseData = await response.json();
-        console.log("API Response::::", responseData);
 
         // Set QR code URL from response
         if (responseData?.credentialUrl) {
@@ -43,7 +48,6 @@ useEffect(() => {
   }
 }, [paymentSuccessful, storedPrescription]);
 
-console.log("panuuuu",receiptQrUrl);
 
   const accountId = process.env.NEXT_PUBLIC_ACCOUNT_ID;
   const privateKey = process.env.NEXT_PUBLIC_PRIVATE_KEY;
